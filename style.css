@@ -1,0 +1,34 @@
+.tcentered 
+{
+    text-align: center;
+}
+
+.flarge
+{
+    font-size: large;
+}
+
+.fmedium
+{
+    font-size: medium;
+}
+
+.fsmall
+{
+    font-size: small;
+}
+
+a
+{
+    text-decoration: none;
+}
+
+a:hover
+{
+    text-decoration: underline;
+}
+
+.ccentered
+{
+    margin: auto;
+}
