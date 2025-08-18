@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./style.css" rel="stylesheet">
+    <link href="./styles/style.css" rel="stylesheet">
     <title>SpokoChill</title>
 </head>
 <body class="tcentered">
@@ -12,39 +13,40 @@
     </header>
 
     <main class="fmedium">
-        Go to the <a href="./pics.html">pics</a> page.
+        Go to the <a href="./views/articles.html">articles</a> page.
         <p>
             This is a <strong id="fish">fish&#128031;</strong>.
-            <form action="/health" method="get">
-                <input type="hidden" value="Search">
-            </form>
+            
+            <div>
+                Fish size:
+                <select>
+                    <option value="100px">large</option>
+                    <option value="50px">medium</option>
+                    <option selected value="10px">small</option>
+                </select>
+            </div>
         </p>
     </main>
-    
+
     <footer class="fsmall">
-        <a href="./search.html">Search</a>
-        <div> <!-- <div> means division/section.   -->
-            <button id="random">Random</button>
-        </div>
+        Have fun with the background color!
         <div>
-            Fish size: 
-            <select>
-                <option value="100px">large</option>
-                <option value="50px">medium</option>
-                <option selected value="10px">small</option>
-            </select>
+            <button id="random">Random</button>
         </div>
     </footer>
 </body>
+
+
 <!-- These have to be after the tags have been defined! -->
 <script>
     let body = document.querySelector("body");
-    document.querySelector("#random").onclick = function() {
-        body.style.backgroundColor = '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0');
+    document.querySelector("#random").onclick = function () {
+        body.style.backgroundColor = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
     };
 
-    document.querySelector("select").onchange = function() {
+    document.querySelector("select").onchange = function () {
         document.querySelector("#fish").style.fontSize = this.value;
     };
 </script>
+
 </html>
