@@ -9,9 +9,7 @@
     <title>Articles</title>
 </head>
 <body class="tcentered">
-    <header class="flarge">
-        This is the articles page.
-    </header>
+    <reusable-header></reusable-header>
 
     <main class="fmedium">
         <div class="card-grid">
@@ -25,22 +23,25 @@
             <button id="random">Random</button>
         </div>
     </footer>
+
+    <reusable-footer></reusable-footer>
+
+
+    
 </body>
 
+<script src="../components/header.js"></script>
+<script src="../components/footer.js"></script>
 
 <!-- These have to be after the tags have been defined! -->
+<script src="../scripts/random_background.js"></script>
 <script src="../components/article_card.js"></script>
 
 <script>
-    let body = document.querySelector("body");
-    document.querySelector("#random").onclick = function () {
-        body.style.backgroundColor = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
-    };
-
     const grid = document.querySelector(".card-grid");
     for (let i = 1; i <= 20; i++) {
         grid.innerHTML += articleCard(
-            `https://picsum.photos/seed/${i}/150`,
+            `https://picsum.photos/seed/${Math.random()}/300/200`,
             `Placeholder image ${i}`,
             `Sample Article ${i}`,
             `This is sample article card number ${i}.`,

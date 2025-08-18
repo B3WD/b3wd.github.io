@@ -8,6 +8,7 @@
     <title>SpokoChill</title>
 </head>
 <body class="tcentered">
+    <reusable-header></reusable-header>
     <header class="flarge">
         This is my page.
     </header>
@@ -34,16 +35,15 @@
             <button id="random">Random</button>
         </div>
     </footer>
+
+    <reusable-footer></reusable-footer>
 </body>
 
+<script src="../scripts/random_background.js"></script>
+<script src="./components/header.js"></script>
 
 <!-- These have to be after the tags have been defined! -->
 <script>
-    let body = document.querySelector("body");
-    document.querySelector("#random").onclick = function () {
-        body.style.backgroundColor = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
-    };
-
     document.querySelector("select").onchange = function () {
         document.querySelector("#fish").style.fontSize = this.value;
     };
