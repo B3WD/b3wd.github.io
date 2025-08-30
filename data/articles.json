@@ -1,0 +1,29 @@
+[
+  {
+    "id": "getting-started-with-web-development",
+    "title": "Getting Started with Web Development",
+    "description": "A beginner's guide to starting your journey in web development with HTML, CSS, and JavaScript.",
+    "author": "B3WD Team",
+    "date": "2024-08-30",
+    "image": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjNDI4NWY0Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5XZWIgRGV2ZWxvcG1lbnQ8L3RleHQ+PC9zdmc+",
+    "tags": ["web development", "beginner", "HTML", "CSS", "JavaScript"]
+  },
+  {
+    "id": "modern-css-techniques",
+    "title": "Modern CSS Techniques for 2024",
+    "description": "Explore the latest CSS features and techniques including Grid, Flexbox, Custom Properties, and more.",
+    "author": "B3WD Team",
+    "date": "2024-08-25",
+    "image": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMjU5N2Y0Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5Nb2Rlcm4gQ1NTPC90ZXh0Pjwvc3ZnPg==",
+    "tags": ["CSS", "modern", "Grid", "Flexbox", "advanced"]
+  },
+  {
+    "id": "javascript-fundamentals",
+    "title": "JavaScript Fundamentals Every Developer Should Know",
+    "description": "Master the core concepts of JavaScript including variables, functions, objects, and asynchronous programming.",
+    "author": "B3WD Team",
+    "date": "2024-08-20",
+    "image": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjdkZjFlIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzMzMyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkphdmFTY3JpcHQ8L3RleHQ+PC9zdmc+",
+    "tags": ["JavaScript", "fundamentals", "programming", "beginner"]
+  }
+]

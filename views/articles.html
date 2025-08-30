@@ -38,17 +38,34 @@
 <script src="../components/article_card.js"></script>
 
 <script>
-    const grid = document.querySelector(".card-grid");
-    for (let i = 1; i <= 20; i++) {
-        grid.innerHTML += articleCard(
-            `https://picsum.photos/seed/${Math.random()}/300/200`,
-            `Placeholder image ${i}`,
-            `Sample Article ${i}`,
-            `This is sample article card number ${i}.`,
-            "#",
-            "Read More"
-        );
+    async function loadArticles() {
+        try {
+            const response = await fetch('../data/articles.json');
+            const articles = await response.json();
+            
+            const grid = document.querySelector(".card-grid");
+            grid.innerHTML = ''; // Clear any existing content
+            
+            articles.forEach(article => {
+                grid.innerHTML += articleCard(
+                    article.image,
+                    article.title,
+                    article.title,
+                    article.description,
+                    `../articles/${article.id}.html`,
+                    "Read More"
+                );
+            });
+        } catch (error) {
+            console.error('Error loading articles:', error);
+            // Fallback to show an error message
+            const grid = document.querySelector(".card-grid");
+            grid.innerHTML = '<p>Sorry, articles could not be loaded at this time.</p>';
+        }
     }
+    
+    // Load articles when the page loads
+    window.addEventListener('load', loadArticles);
 </script>
 
 </html>
