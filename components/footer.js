@@ -1,10 +1,22 @@
+import { injectComponentDependencies } from "../scripts/component_dependencies.js";
+
+
 class ReusableFooter extends HTMLElement {
-    connectedCallback() {
+    connectedCallback() {        
+        injectComponentDependencies(
+            '../components/rng-bg-btn.js'
+        );
+
         this.innerHTML = `
-        <footer>
-            <div></div>
+        <footer class="fsmall">
+            <div>
+                Have fun with the background color!
+            </div>
+            <div>
+                <rng-bg-btn></rng-bg-btn>
+            </div>
         </footer>
-        `
+        `;
     }
 }
 
