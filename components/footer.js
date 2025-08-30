@@ -1,10 +1,14 @@
 class ReusableFooter extends HTMLElement {
     connectedCallback() {
         // Dynamically load rng-bg-btn.js
-        const script = document.createElement('script');
-        script.src = '../components/rng-bg-btn.js';
-        script.type = 'module';
-        document.head.appendChild(script);
+        // Only inject the script if it hasn't been added yet
+        const scriptSrc = '../components/rng-bg-btn.js';
+        if (!document.querySelector(`script[src="${scriptSrc}"]`)) {
+            const script = document.createElement('script');
+            script.src = scriptSrc;
+            script.type = 'module';
+           document.head.appendChild(script);
+       }
 
         this.innerHTML = `
         <footer class="fsmall">
