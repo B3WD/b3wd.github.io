@@ -1,14 +1,11 @@
+import { injectComponentDependencies } from "../scripts/component_dependencies.js";
+
+
 class ReusableFooter extends HTMLElement {
-    connectedCallback() {
-        // Dynamically load rng-bg-btn.js
-        // Only inject the script if it hasn't been added yet
-        const scriptSrc = '../components/rng-bg-btn.js';
-        if (!document.querySelector(`script[src="${scriptSrc}"]`)) {
-            const script = document.createElement('script');
-            script.src = scriptSrc;
-            script.type = 'module';
-           document.head.appendChild(script);
-       }
+    connectedCallback() {        
+        injectComponentDependencies(
+            '../components/rng-bg-btn.js'
+        );
 
         this.innerHTML = `
         <footer class="fsmall">
