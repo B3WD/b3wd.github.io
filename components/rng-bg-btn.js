@@ -11,4 +11,4 @@ class RngBgBtn extends HTMLElement {
     }
 }
 
-customElements.define("rng-bg-btn", RngBgBtn)
+customElements.define("rng-bg-btn", RngBgBtn);
