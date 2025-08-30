@@ -3,7 +3,7 @@ class ReusableHeader extends HTMLElement {
         this.innerHTML = `
         <header>
             <a href="../index.html">Home</a>
-            <a href="../views/articles.html">Articles</a>
+            <a href="../views/library.html">Articles</a>
         </header>
         `
     }
