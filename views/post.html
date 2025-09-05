@@ -12,6 +12,7 @@
 <body class="tcentered">
     <reusable-header></reusable-header>
     
+    <header class="article-header"></header>
     <main class="article-content"></main>
 
     <nav class="article-navigation">
@@ -74,7 +75,7 @@
         }
 
         // Load the article when the page loads
-        window.addEventListener('load', loadArticle);
         window.addEventListener('load', fillHeader);
+        window.addEventListener('load', loadArticle);
     </script>
 </html>
