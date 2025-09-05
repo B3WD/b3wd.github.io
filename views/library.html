@@ -48,7 +48,7 @@
         const style = window.getComputedStyle(grid);
         const paddingLeft = parseInt(style.paddingLeft, 10);
         const paddingRight = parseInt(style.paddingRight, 10);
-        const gridWidth = grid.offsetWidth - paddingLeft - paddingRight; // subtract padding
+        const gridWidth = grid.offsetWidth - paddingLeft - paddingRight; // FIXED
         const maxColumns = Math.floor((gridWidth + gap) / (cardWidth + gap));
         return Math.max(1, Math.min(maxColumns, articles.length));
     }
@@ -61,12 +61,10 @@
         return result;
     }
 
-    function renderGrid(articles) {
+    function renderGridWithColumns(articles, columns) {
         const grid = document.querySelector('.card-grid');
         grid.innerHTML = '';
-        const columns = getColumnCount(articles);
         const distributed = distributeArticles(articles, columns);
-
         distributed.forEach(colArticles => {
             const colDiv = document.createElement('div');
             colDiv.className = 'card-column';
@@ -91,8 +89,8 @@
     function renderGridIfNeeded(articles) {
         const columns = getColumnCount(articles);
         if (columns !== lastColumnCount) {
-            lastColumnCount = columns;
-            renderGrid(articles);
+            renderGridWithColumns(articles, columns);
+            lastColumnCount = columns; // update AFTER rendering
         }
     }
 
