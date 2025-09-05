@@ -3,6 +3,11 @@
     text-align: center;
 }
 
+.tleft
+{
+    text-align: left;
+}
+
 .flarge
 {
     font-size: large;
