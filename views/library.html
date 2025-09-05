@@ -13,11 +13,9 @@
 <body class="tcentered">
     <reusable-header></reusable-header>
 
-    <main class="fmedium">
-        <div class="card-grid">
-            <!-- Article cards will be inserted here -->
-        </div>
-    </main>
+    <div class="card-grid">
+        <!-- Columns of article cards will be inserted here -->
+    </div>
 
 
     <reusable-footer></reusable-footer>
@@ -26,19 +24,78 @@
 <script src="../components/header.js"></script>
 <script type="module" src="../components/footer.js"></script>
 <script src="../components/article_card.js"></script>
-
 <script>
-    const grid = document.querySelector(".card-grid");
-    for (let i = 1; i <= 20; i++) {
-        grid.innerHTML += articleCard(
-            `https://picsum.photos/seed/${Math.random()}/300/200`,
-            `Placeholder image ${i}`,
-            `Sample Article ${i}`,
-            `This is sample article card number ${i}.`,
-            "#",
-            "Read More"
-        );
+    async function loadArticles() {
+        try {
+            const response = await fetch('../data/posts_metadata.json');
+            const articles = await response.json();
+
+            renderGrid(articles); // Use the grid rendering logic
+        } catch (error) {
+            console.error('Error loading articles:', error);
+            const grid = document.querySelector(".card-grid");
+            grid.innerHTML = '<p>Sorry, articles could not be loaded at this time.</p>';
+        }
     }
+
+    function getColumnCount(articles) {
+        const cardWidth = 18 * 16; // 18rem in px
+        const gap = 15; // px
+        const grid = document.querySelector('.card-grid');
+        const style = window.getComputedStyle(grid);
+        const paddingLeft = parseInt(style.paddingLeft, 10);
+        const paddingRight = parseInt(style.paddingRight, 10);
+        const gridWidth = grid.offsetWidth - paddingLeft - paddingRight; // subtract padding
+
+        const maxColumns = Math.floor((gridWidth + gap) / (cardWidth + gap));
+        return Math.max(1, Math.min(maxColumns, articles.length));
+    }
+
+    function distributeArticles(articles, columns) {
+        const result = Array.from({ length: columns }, () => []);
+        articles.forEach((article, i) => {
+            result[i % columns].push(article);
+        });
+        return result;
+    }
+
+    function renderGrid(articles) {
+        const grid = document.querySelector('.card-grid');
+        grid.innerHTML = '';
+        const columns = getColumnCount(articles);
+        const distributed = distributeArticles(articles, columns);
+
+        distributed.forEach(colArticles => {
+            const colDiv = document.createElement('div');
+            colDiv.className = 'card-column';
+            colDiv.style.display = 'flex';
+            colDiv.style.flexDirection = 'column';
+            colDiv.style.gap = '0px';
+            colArticles.forEach(article => {
+                const cardHTML = articleCard(
+                    article.image,
+                    article.title,
+                    article.title,
+                    article.description,
+                    `../views/post.html?id=${article.id}`,
+                    "Read More"
+                );
+                // Add margin-bottom to the column's children via CSS or inline style in articleCard
+                colDiv.insertAdjacentHTML('beforeend', cardHTML);
+            });
+            grid.appendChild(colDiv);
+        });
+    }
+
+    // Re-render grid on resize
+    window.addEventListener('resize', async () => {
+        const response = await fetch('../data/posts_metadata.json');
+        const articles = await response.json();
+        renderGrid(articles);
+    });
+
+    // Initial load
+    window.addEventListener('DOMContentLoaded', loadArticles);
 </script>
 
 </html>

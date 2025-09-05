@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../styles/style.css" rel="stylesheet">
+    <link href="../styles/header.css" rel="stylesheet">
+    <link href="../styles/article.css" rel="stylesheet">
+    <title>Articles</title>
+</head>
+<body class="tcentered">
+    <reusable-header></reusable-header>
+    
+    <main class="article-content"></main>
+
+    <nav class="article-navigation">
+        <a href="../views/library.html" class="back-to-articles">Back to Articles</a>
+    </nav>
+
+    <reusable-footer></reusable-footer>
+</body>
+
+    <script src="../components/header.js"></script>
+    <script type="module" src="../components/footer.js"></script>
+
+    <script>
+        async function loadArticle() {
+            const params = new URLSearchParams(window.location.search);
+            const articleId = params.get('id');
+
+            if (!articleId) {
+                document.querySelector('.article-content').innerHTML = '<p>Article ID not provided.</p>';
+                return;
+            }
+
+            try {
+                const response = await fetch(`../posts/${articleId}.html`);
+                if (!response.ok) throw new Error('Article not found');
+                const articleHtml = await response.text();
+                document.querySelector('.article-content').innerHTML = articleHtml;
+            } catch (error) {
+                console.error('Error loading article:', error);
+                document.querySelector('.article-content').innerHTML = '<p>Sorry, the article could not be loaded at this time.</p>';
+            }
+        }
+
+        async function fillHeader() {
+            const params = new URLSearchParams(window.location.search);
+            const articleId = params.get('id');
+            if (!articleId) return;
+
+            try {
+                const response = await fetch('../data/posts_metadata.json');
+                const articles = await response.json();
+                const article = articles.find(a => a.id === articleId);
+                if (!article) return;
+                
+                // class=article-header
+                const header = document.querySelector('.article-header');
+                header.innerHTML = `
+                    <h1>${article.title}</h1>
+                    <div class="article-meta">
+                        <span class="author">By ${article.author}</span>
+                        <span class="date">${article.date}</span>
+                    </div>
+                    <div class="article-tags">
+                        ${article.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                `;
+            } catch (error) {
+                console.error('Error loading article metadata:', error);
+            }
+        }
+
+        // Load the article when the page loads
+        window.addEventListener('load', loadArticle);
+        window.addEventListener('load', fillHeader);
+    </script>
+</html>

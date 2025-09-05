@@ -1,12 +1,27 @@
-.article-card {
+.card-grid {
+    display: flex;
+    gap: 15px;
+    /* margin: 15px; */
+    padding: 0 50px; /* Reasonable padding */
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.card-column {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 200px;
-    height: 300px;
+}
+
+.article-card {
+    display: block;
+    width: 18rem;
+    height: auto;
+    margin-bottom: 15px;
     border: 1px solid black;
-    margin: 10px;
     background-color: white;
+    padding-bottom: 15px;
+    overflow: hidden;
 }
 
 .article-card img {
@@ -15,15 +30,14 @@
     object-fit: cover;
 }
 
+
 .article-card p {
     font-size: 20px;
     margin: 10px;
 }
 
-.card-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    padding: 1rem 0;
+
+#card-grid {
+    background: green;
 }
+
