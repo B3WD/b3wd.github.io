@@ -4,7 +4,7 @@
     "title": "How this website was made",
     "description": "Step by step guide to claiming your small piece of the internet",
     "author": "Lazo",
-    "date": "2024-09-01",
+    "date": "05-09-2025",
     "image": "https://picsum.photos/seed/77/300/200",
     "tags": ["web development", "JavaScript" ,"HTML", "programming", "beginner"]
   },
@@ -13,7 +13,7 @@
     "title": "Basic Software Engineering",
     "description": "An introduction to essential software engineering principles and practices.",
     "author": "Lazo",
-    "date": "2024-08-30",
+    "date": "12-10-2025",
     "image": "https://picsum.photos/seed/27/300/200",
     "tags": ["requirements", "design", "implementation", "testing"]
   },
@@ -22,7 +22,7 @@
     "title": "Refactoring until clean code",
     "description": "Learn the principles of clean code and how to refactor existing codebases for improved readability and maintainability.",
     "author": "Lazo",
-    "date": "2024-08-25",
+    "date": "22-11-2025",
     "image": "https://picsum.photos/seed/42/300/200",
     "tags": ["refactoring", "clean code", "best practices", "conventions"]
   },
@@ -31,7 +31,7 @@
     "title": "Navigating the hellish world of Python imports",
     "description": "Master the core concepts of Python imports, including absolute vs relative imports, and best practices for structuring your projects.",
     "author": "Lazo",
-    "date": "2024-08-20",
+    "date": "01-12-2025",
     "image": "https://picsum.photos/seed/13/300/200",
     "tags": ["Python", "imports", "programming", "best practices"]
   }
