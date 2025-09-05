@@ -25,12 +25,15 @@
 <script type="module" src="../components/footer.js"></script>
 <script src="../components/article_card.js"></script>
 <script>
+    let lastColumnCount = null;
+    let cachedArticles = [];
+
     async function loadArticles() {
         try {
             const response = await fetch('../data/posts_metadata.json');
             const articles = await response.json();
-
-            renderGrid(articles); // Use the grid rendering logic
+            cachedArticles = articles;
+            renderGridIfNeeded(articles);
         } catch (error) {
             console.error('Error loading articles:', error);
             const grid = document.querySelector(".card-grid");
@@ -46,7 +49,6 @@
         const paddingLeft = parseInt(style.paddingLeft, 10);
         const paddingRight = parseInt(style.paddingRight, 10);
         const gridWidth = grid.offsetWidth - paddingLeft - paddingRight; // subtract padding
-
         const maxColumns = Math.floor((gridWidth + gap) / (cardWidth + gap));
         return Math.max(1, Math.min(maxColumns, articles.length));
     }
@@ -80,18 +82,25 @@
                     `../views/post.html?id=${article.id}`,
                     "Read More"
                 );
-                // Add margin-bottom to the column's children via CSS or inline style in articleCard
                 colDiv.insertAdjacentHTML('beforeend', cardHTML);
             });
             grid.appendChild(colDiv);
         });
     }
 
-    // Re-render grid on resize
-    window.addEventListener('resize', async () => {
-        const response = await fetch('../data/posts_metadata.json');
-        const articles = await response.json();
-        renderGrid(articles);
+    function renderGridIfNeeded(articles) {
+        const columns = getColumnCount(articles);
+        if (columns !== lastColumnCount) {
+            lastColumnCount = columns;
+            renderGrid(articles);
+        }
+    }
+
+    // Re-render grid only if column count changes
+    window.addEventListener('resize', () => {
+        if (cachedArticles.length > 0) {
+            renderGridIfNeeded(cachedArticles);
+        }
     });
 
     // Initial load
