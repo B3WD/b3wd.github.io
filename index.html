@@ -32,12 +32,18 @@
 
 <script src="./components/header.js"></script>
 <script type="module" src="./components/footer.js"></script>
+<script src="../scripts/show_background.js"></script>
 
 <!-- These have to be after the tags have been defined! -->
 <script>
     document.querySelector("select").onchange = function () {
         document.querySelector("#fish").style.fontSize = this.value;
     };
+
+    const bgc = sessionStorage.getItem('bgc');
+    if (bgc) {
+        document.body.style.backgroundColor = bgc;
+    }
 </script>
 
 </html>
