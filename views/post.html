@@ -16,8 +16,9 @@
 
     <header class="article-header"></header>
     <main class="article-content"></main>
+    
     <nav class="article-navigation">
-        <a href="../views/library.html" class="back-to-articles">Back to Articles</a>
+        <a href="../views/library.html" class="back-to-posts">Back to Articles</a>
     </nav>
 
     <reusable-footer></reusable-footer>
@@ -79,9 +80,26 @@
         }
     }
 
+    function updateNavigation() {
+        const params = new URLSearchParams(window.location.search);
+        const type = params.get('type') || 'articles';
+
+        const nav = document.querySelector('.article-navigation');
+        if (!nav) return;
+
+        if (type === 'articles') {
+            nav.innerHTML = `<a href="../views/library.html" class="back-to-posts">Back to Articles</a>`;
+        } else if (type === 'reads') {
+            nav.innerHTML = `<a href="../views/library.html?tab=reads" class="back-to-posts">Back to Reads</a>`;
+        } else {
+            nav.innerHTML = `<a href="../views/library.html" class="back-to-posts">Back to Library</a>`;
+        }
+    }
+
     // Load the article when the page loads
     window.addEventListener('load', fillPostHeader);
     window.addEventListener('load', loadPost);
+    window.addEventListener('load', updateNavigation);
 </script>
 
 </html>

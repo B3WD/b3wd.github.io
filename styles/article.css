@@ -110,7 +110,7 @@
     border-top: 1px solid #eee;
 }
 
-.back-to-articles {
+.back-to-posts {
     display: inline-block;
     background-color: #4285f4;
     color: white;
@@ -121,7 +121,7 @@
     transition: background-color 0.2s;
 }
 
-.back-to-articles:hover {
+.back-to-posts:hover {
     background-color: #3367d6;
     text-decoration: none;
 }
