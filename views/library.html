@@ -10,6 +10,7 @@
     <link rel="icon" href="../favicons/favicon.ico" type="image/x-icon">
     <title>Articles</title>
 </head>
+
 <body class="tcentered">
     <reusable-header></reusable-header>
 
@@ -30,8 +31,8 @@
     let cachedArticles = [];
 
     async function loadPosts() {
-            const params = new URLSearchParams(window.location.search);
-            const type = params.get('type') || 'articles';
+        const params = new URLSearchParams(window.location.search);
+        const type = params.get('type') || 'articles';
         try {
             const response = await fetch(`../data/${type}_metadata.json`);
             const articles = await response.json();
