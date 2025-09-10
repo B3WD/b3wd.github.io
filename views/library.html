@@ -10,7 +10,6 @@
     <link rel="icon" href="../favicons/favicon.ico" type="image/x-icon">
     <title>Articles</title>
 </head>
-
 <body class="tcentered">
     <reusable-header></reusable-header>
 
@@ -30,9 +29,11 @@
     let lastColumnCount = null;
     let cachedArticles = [];
 
-    async function loadArticles() {
+    async function loadPosts() {
+            const params = new URLSearchParams(window.location.search);
+            const type = params.get('type') || 'articles';
         try {
-            const response = await fetch('../data/posts_metadata.json');
+            const response = await fetch(`../data/${type}_metadata.json`);
             const articles = await response.json();
             cachedArticles = articles;
             renderGridIfNeeded(articles);
@@ -64,6 +65,7 @@
     }
 
     function renderGridWithColumns(articles, columns) {
+        const type = (new URLSearchParams(window.location.search)).get('type') || 'articles';
         const grid = document.querySelector('.card-grid');
         grid.innerHTML = '';
         const distributed = distributeArticles(articles, columns);
@@ -79,7 +81,8 @@
                     article.title,
                     article.title,
                     article.description,
-                    `../views/post.html?id=${article.id}`,
+                    // send id and type
+                    `../views/post.html?id=${article.id}&type=${type}`,
                     "Read More"
                 );
                 colDiv.insertAdjacentHTML('beforeend', cardHTML);
@@ -104,7 +107,7 @@
     });
 
     // Initial load
-    window.addEventListener('DOMContentLoaded', loadArticles);
+    window.addEventListener('DOMContentLoaded', loadPosts);
 </script>
 
 </html>

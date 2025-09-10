@@ -28,8 +28,9 @@
     <script src="../scripts/show_background.js"></script>
 
     <script>
-        async function loadArticle() {
+        async function loadPost() {
             const params = new URLSearchParams(window.location.search);
+            const type = params.get('type') || 'articles';
             const articleId = params.get('id');
 
             if (!articleId) {
@@ -38,7 +39,7 @@
             }
 
             try {
-                const response = await fetch(`../posts/${articleId}.html`);
+                const response = await fetch(`../posts/${type}/${articleId}.html`);
                 if (!response.ok) throw new Error('Article not found');
                 const articleHtml = await response.text();
                 document.querySelector('.article-content').innerHTML = articleHtml;
@@ -48,13 +49,15 @@
             }
         }
 
-        async function fillHeader() {
+        async function fillPostHeader() {
             const params = new URLSearchParams(window.location.search);
             const articleId = params.get('id');
+            const type = params.get('type') || 'articles';
+
             if (!articleId) return;
 
             try {
-                const response = await fetch('../data/posts_metadata.json');
+                const response = await fetch(`../data/${type}_metadata.json`);
                 const articles = await response.json();
                 const article = articles.find(a => a.id === articleId);
                 if (!article) return;
@@ -77,7 +80,7 @@
         }
 
         // Load the article when the page loads
-        window.addEventListener('load', fillHeader);
-        window.addEventListener('load', loadArticle);
+        window.addEventListener('load', fillPostHeader);
+        window.addEventListener('load', loadPost);
     </script>
 </html>
