@@ -1,0 +1,82 @@
+let lastColumnCount = null;
+let cachedArticles = [];
+
+async function loadPosts() {
+    const params = new URLSearchParams(window.location.search);
+    const type = params.get('type') || 'articles';
+    try {
+        const response = await fetch(`../data/${type}_metadata.json`);
+        const articles = await response.json();
+        cachedArticles = articles;
+        renderGridIfNeeded(articles);
+    } catch (error) {
+        console.error('Error loading articles:', error);
+        const grid = document.querySelector(".card-grid");
+        grid.innerHTML = '<p>Sorry, articles could not be loaded at this time.</p>';
+    }
+}
+
+function getColumnCount(articles) {
+    const cardWidth = 18 * 16; // 18rem in px
+    const gap = 36; // px
+    const grid = document.querySelector('.card-grid');
+    const style = window.getComputedStyle(grid);
+    const paddingLeft = parseInt(style.paddingLeft, 10);
+    const paddingRight = parseInt(style.paddingRight, 10);
+    const gridWidth = grid.offsetWidth - paddingLeft - paddingRight; // FIXED
+    const maxColumns = Math.floor((gridWidth + gap) / (cardWidth + gap));
+    return Math.max(1, Math.min(maxColumns, articles.length));
+}
+
+function distributeArticles(articles, columns) {
+    const result = Array.from({ length: columns }, () => []);
+    articles.forEach((article, i) => {
+        result[i % columns].push(article);
+    });
+    return result;
+}
+
+function renderGridWithColumns(articles, columns) {
+    const type = (new URLSearchParams(window.location.search)).get('type') || 'articles';
+    const grid = document.querySelector('.card-grid');
+    grid.innerHTML = '';
+    const distributed = distributeArticles(articles, columns);
+    distributed.forEach(colArticles => {
+        const colDiv = document.createElement('div');
+        colDiv.className = 'card-column';
+        colDiv.style.display = 'flex';
+        colDiv.style.flexDirection = 'column';
+        colDiv.style.gap = '0px';
+        colArticles.forEach(article => {
+            const cardHTML = articleCard(
+                `https://picsum.photos/seed/${Math.random()}/300/200`,
+                article.title,
+                article.title,
+                article.description,
+                // send id and type
+                `../views/post.html?id=${article.id}&type=${type}`,
+                "Read More"
+            );
+            colDiv.insertAdjacentHTML('beforeend', cardHTML);
+        });
+        grid.appendChild(colDiv);
+    });
+}
+
+function renderGridIfNeeded(articles) {
+    const columns = getColumnCount(articles);
+    if (columns !== lastColumnCount) {
+        renderGridWithColumns(articles, columns);
+        lastColumnCount = columns; // update AFTER rendering
+    }
+}
+
+// Re-render grid only if column count changes
+window.addEventListener('resize', () => {
+    if (cachedArticles.length > 0) {
+        renderGridIfNeeded(cachedArticles);
+    }
+});
+
+// Initial load
+window.addEventListener('DOMContentLoaded', loadPosts);
