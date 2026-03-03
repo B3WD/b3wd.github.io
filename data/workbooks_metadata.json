@@ -1,0 +1,20 @@
+[
+  {
+    "id": "never-split-the-difference",
+    "title": "WIP",
+    "description": "How to negotiate with your girlfriend, family and friends effectively.",
+    "author": "Lazo",
+    "date": "03-03-2026",
+    "image": "https://picsum.photos/seed/77/300/200",
+    "tags": ["self-help", "soft skills" ,"negotiation", "communication"]
+  },
+  {
+    "id": "how-big-things-get-done",
+    "title": "How Big Things Get Done (WIP)",
+    "description": "Yes, that includes software projects.",
+    "author": "Lazo",
+    "date": "03-03-2026",
+    "image": "https://picsum.photos/seed/88/300/200",
+    "tags": ["productivity", "project management", "software engineering"]
+  }
+]
