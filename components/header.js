@@ -6,6 +6,7 @@ class ReusableHeader extends HTMLElement {
                 <a href="../index.html">Home</a>
                 <a href="../views/library.html?type=articles">Articles</a>
                 <a href="../views/library.html?type=reads">Reads</a>
+                <a href="../views/library.html?type=workbooks">Workbooks</a>
             </nav>
         </header>
         `
