@@ -19,10 +19,10 @@
 
         <div>
             Fish size:
-            <select>
-                <option value="100px">large</option>
+            <select id="fish-size">
+                <option selected value="100px">large</option>
                 <option value="50px">medium</option>
-                <option selected value="10px">small</option>
+                <option value="10px">small</option>
             </select>
         </div>
         </p>
@@ -37,8 +37,15 @@
 
 <!-- These have to be after the tags have been defined! -->
 <script>
-    document.querySelector("select").onchange = function () {
-        document.querySelector("#fish").style.fontSize = this.value;
+    const selectElement = document.querySelector("#fish-size");
+    const fishElement = document.querySelector("#fish");
+
+    // Set initial size based on selected option
+    fishElement.style.fontSize = selectElement.value;
+
+    // Handle size changes
+    selectElement.onchange = function () {
+        fishElement.style.fontSize = this.value;
     };
 </script>
 
