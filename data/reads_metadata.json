@@ -7,5 +7,14 @@
     "date": "05-09-2025",
     "image": "https://picsum.photos/seed/77/300/200",
     "tags": ["self-help", "soft skills" ,"negotiation", "communication"]
+  },
+  {
+    "id": "how-big-things-get-done",
+    "title": "How Big Things Get Done",
+    "description": "Yes, that includes software projects.",
+    "author": "Lazo",
+    "date": "03-03-2026",
+    "image": "https://picsum.photos/seed/88/300/200",
+    "tags": ["productivity", "project management", "software engineering"]
   }
 ]
